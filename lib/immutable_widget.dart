@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "dart:math" as Math;
+import "dart:math" as math;
 
 class ImmutableWidget extends StatelessWidget {
   const ImmutableWidget({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class ImmutableWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(60.0),
         child: Transform.rotate(
-          angle: 180 / Math.pi,
+          angle: 180 / math.pi,
           child: Container(
             width: 250,
             height: 250,

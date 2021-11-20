@@ -1,4 +1,6 @@
 # https://gist.github.com/aagarwal1012/eb2551683d81cf47d60868ab607520b1
+  name: CI
+
   on:
     push:
       branches:

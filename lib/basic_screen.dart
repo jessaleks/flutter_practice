@@ -8,6 +8,7 @@ class BasicScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: const Key("key"),
         backgroundColor: Colors.indigo,
         title: const Text("Welcome to Flutter"),
         actions: const <Widget>[

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/basic_screen.dart';
+import 'profile_screen.dart';
 // import './immutable_widget.dart';
 
 void main() => runApp(const MyApp());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: BasicScreen()
+      home: ProfileScreen()
     );
   }
 }

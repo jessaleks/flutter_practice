@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice/immutable_widget.dart';
 import 'package:flutter_practice/text_layout.dart';
 
+import 'package:google_fonts/google_fonts.dart';
+
 class BasicScreen extends StatelessWidget {
   const BasicScreen({Key? key}) : super(key: key);
 
@@ -11,7 +13,10 @@ class BasicScreen extends StatelessWidget {
       appBar: AppBar(
         key: const Key("key"),
         backgroundColor: Colors.indigo,
-        title: const Text("Welcome to Flutter"),
+        title: Text(
+          "Welcome to Flutter",
+          style: GoogleFonts.leckerliOne(fontSize: 40.0),
+        ),
         actions: const <Widget>[
           Padding(padding: EdgeInsets.all(10.0), child: Icon(Icons.edit))
         ],

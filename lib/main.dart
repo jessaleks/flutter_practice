@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'profile_screen.dart';
+import 'flex_screen.dart';
 // import './immutable_widget.dart';
 
 void main() => runApp(const MyApp());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       key: Key("key"),
-      home: ProfileScreen(),
+      home: FlexScreen(),
     );
   }
 }

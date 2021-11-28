@@ -10,7 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_practice/main.dart';
 
-
 void main() {
   testWidgets('App renders with the appbar', (WidgetTester tester) async {
     const key = Key("key");
@@ -19,6 +18,5 @@ void main() {
 
     // Verify that our counter starts at 0.
     expect(find.byKey(key), findsOneWidget);
-
   });
 }

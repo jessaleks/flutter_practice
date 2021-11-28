@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'labeled_container.dart';
 
 class FlexScreen extends StatelessWidget {
+  const FlexScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Flexible and Expanded'),
+          title: const Text('Flexible and Expanded'),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -55,9 +55,9 @@ class ProfileScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _buildIcon(Icons.restaurant, 'Feed'),
-        _buildIcon(Icons.favorite, 'Pet'),
-        _buildIcon(Icons.directions_walk, 'Walk'),
+        _buildIcon(Icons.restaurant, 'Feed', context),
+        _buildIcon(Icons.favorite, 'Pet', context),
+        _buildIcon(Icons.directions_walk, 'Walk', context),
       ],
     );
   }
@@ -79,12 +79,16 @@ Widget _buildDetailsRow(String heading, String value) {
   );
 }
 
-Widget _buildIcon(IconData icon, String text) {
+Widget _buildIcon(IconData icon, String text, context) {
   return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Column(
+      child: Row(
         children: [
-          Icon(icon, size: 40),
+          Icon(
+            icon,
+            size: 40,
+            color: Theme.of(context).colorScheme.primary,
+          ),
           Text(text, style: const TextStyle(fontSize: 20))
         ],
       ));

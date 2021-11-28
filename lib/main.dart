@@ -9,8 +9,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      key: const Key("key"),
+    return const MaterialApp(
+      key: Key("key"),
       home: FlexScreen(),
     );
   }

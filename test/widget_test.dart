@@ -14,7 +14,7 @@ void main() {
   testWidgets('App renders with the appbar', (WidgetTester tester) async {
     const key = Key("key");
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const StopWatchApp());
 
     // Verify that our counter starts at 0.
     expect(find.byKey(key), findsOneWidget);

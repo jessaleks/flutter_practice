@@ -9,9 +9,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      key: Key("key"),
-      home: FlexScreen(),
+    return MaterialApp(
+      theme: ThemeData(
+          brightness: Brightness.light,
+          primaryColor: Colors.green[600],
+          appBarTheme:
+              const AppBarTheme(toolbarTextStyle: TextStyle(fontSize: 24))),
+      key: const Key("key"),
+      home: const FlexScreen(),
     );
   }
 }

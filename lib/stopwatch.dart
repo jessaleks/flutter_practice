@@ -9,6 +9,31 @@ class StopWatch extends StatefulWidget {
 }
 
 class StopWatchState extends State<StopWatch> {
+  int seconds = 0;
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    seconds = 0;
+    timer = Timer.periodic(const Duration(seconds: 1), _onTick);
+  }
+
+  void _onTick(Timer time) {
+    setState(() {
+      ++seconds;
+    });
+  }
+
+  String _secondsText() => seconds == 1 ? 'second' : 'seconds';
+
+  // making sure to dispose of the timer when we close the screen
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +42,7 @@ class StopWatchState extends State<StopWatch> {
       ),
       body: Center(
         child: Text(
-          '0 seconds',
+          '$seconds ${_secondsText()}',
           style: Theme.of(context).textTheme.headline5,
         ),
       ),

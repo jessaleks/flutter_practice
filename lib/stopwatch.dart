@@ -37,15 +37,43 @@ class StopWatchState extends State<StopWatch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Stopwatch'),
-      ),
-      body: Center(
-        child: Text(
-          '$seconds ${_secondsText()}',
-          style: Theme.of(context).textTheme.headline5,
+        appBar: AppBar(
+          title: const Text('Stopwatch'),
         ),
-      ),
-    );
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('$seconds ${_secondsText()}',
+                style: Theme.of(context).textTheme.headline5),
+            const SizedBox(height: 20.0),
+            Row(
+              children: [
+                const TextButton(
+                  child: Text(
+                    "Text Button",
+                  ),
+                  onPressed: null,
+                ),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.green),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white)),
+                    onPressed: null,
+                    child: const Text("Start")),
+                OutlinedButton(
+                  onPressed: null,
+                  child: const Text("Stop"),
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.red),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white)),
+                ),
+              ],
+            )
+          ],
+        ));
   }
 }

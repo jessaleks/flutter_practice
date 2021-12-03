@@ -11,17 +11,27 @@ class StopWatch extends StatefulWidget {
 class StopWatchState extends State<StopWatch> {
   int seconds = 0;
   Timer? timer;
-
-  @override
-  void initState() {
-    super.initState();
-    seconds = 0;
-    timer = Timer.periodic(const Duration(seconds: 1), _onTick);
-  }
+  bool isTicking = true;
 
   void _onTick(Timer time) {
     setState(() {
       ++seconds;
+    });
+  }
+
+  void _startTimer() {
+    timer = Timer.periodic(const Duration(seconds: 1), _onTick);
+    setState(() {
+      seconds = 0;
+      isTicking = true;
+    });
+  }
+
+  void _stopTimer() {
+    timer?.cancel();
+
+    setState(() {
+      isTicking = false;
     });
   }
 
@@ -47,6 +57,7 @@ class StopWatchState extends State<StopWatch> {
                 style: Theme.of(context).textTheme.headline5),
             const SizedBox(height: 20.0),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const TextButton(
                   child: Text(
@@ -60,16 +71,14 @@ class StopWatchState extends State<StopWatch> {
                             MaterialStateProperty.all<Color>(Colors.green),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white)),
-                    onPressed: null,
+                    onPressed: isTicking ? null : _startTimer,
                     child: const Text("Start")),
                 OutlinedButton(
-                  onPressed: null,
+                  onPressed: isTicking ? _stopTimer : null,
                   child: const Text("Stop"),
                   style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.red),
                       foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white)),
+                          MaterialStateProperty.all<Color>(Colors.black)),
                 ),
               ],
             )

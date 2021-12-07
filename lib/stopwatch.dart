@@ -9,20 +9,20 @@ class StopWatch extends StatefulWidget {
 }
 
 class StopWatchState extends State<StopWatch> {
-  int seconds = 0;
+  int miliseconds = 0;
   Timer? timer;
   bool isTicking = true;
 
   void _onTick(Timer time) {
     setState(() {
-      ++seconds;
+      ++miliseconds;
     });
   }
 
   void _startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), _onTick);
     setState(() {
-      seconds = 0;
+      miliseconds = 0;
       isTicking = true;
     });
   }
@@ -35,7 +35,10 @@ class StopWatchState extends State<StopWatch> {
     });
   }
 
-  String _secondsText() => seconds == 1 ? 'second' : 'seconds';
+  String _secondsText() {
+    final seconds = miliseconds / 1000;
+    return '$seconds seconds';
+  }
 
   // making sure to dispose of the timer when we close the screen
   @override
@@ -53,7 +56,7 @@ class StopWatchState extends State<StopWatch> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('$seconds ${_secondsText()}',
+            Text('${miliseconds / 1000.0} ${_secondsText()}',
                 style: Theme.of(context).textTheme.headline5),
             const SizedBox(height: 20.0),
             Row(
@@ -81,6 +84,13 @@ class StopWatchState extends State<StopWatch> {
                           MaterialStateProperty.all<Color>(Colors.black)),
                 ),
               ],
+            ),
+            const SizedBox(height: 20.0),
+            const Center(
+              child: ElevatedButton(
+                child: Text("Lap"),
+                onPressed: null,
+              ),
             )
           ],
         ));

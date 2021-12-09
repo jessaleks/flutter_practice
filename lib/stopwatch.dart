@@ -12,6 +12,7 @@ class StopWatchState extends State<StopWatch> {
   int miliseconds = 0;
   Timer? timer;
   bool isTicking = true;
+  final laps = <int>[];
 
   void _onTick(Timer time) {
     setState(() {
@@ -20,7 +21,9 @@ class StopWatchState extends State<StopWatch> {
   }
 
   void _startTimer() {
-    timer = Timer.periodic(const Duration(seconds: 1), _onTick);
+    timer = Timer.periodic(const Duration(milliseconds: 1), _onTick);
+    laps.clear();
+
     setState(() {
       miliseconds = 0;
       isTicking = true;
@@ -32,10 +35,11 @@ class StopWatchState extends State<StopWatch> {
 
     setState(() {
       isTicking = false;
+      miliseconds = 0;
     });
   }
 
-  String _secondsText() {
+  String _secondsText(int miliseconds) {
     final seconds = miliseconds / 1000;
     return '$seconds seconds';
   }
@@ -47,6 +51,21 @@ class StopWatchState extends State<StopWatch> {
     super.dispose();
   }
 
+  void _lap() {
+    setState(() {
+      laps.add(miliseconds);
+      miliseconds = 0;
+    });
+  }
+
+  Widget _buildLapDisplay() {
+    return ListView(
+      children: <Widget>[
+        for (var ms in laps) ListTile(title: Text(_secondsText(ms))),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +75,7 @@ class StopWatchState extends State<StopWatch> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('${miliseconds / 1000.0} ${_secondsText()}',
+            Text('${miliseconds / 1000.0} ${_secondsText(miliseconds)}',
                 style: Theme.of(context).textTheme.headline5),
             const SizedBox(height: 20.0),
             Row(
@@ -86,11 +105,14 @@ class StopWatchState extends State<StopWatch> {
               ],
             ),
             const SizedBox(height: 20.0),
-            const Center(
+            Center(
               child: ElevatedButton(
-                child: Text("Lap"),
-                onPressed: null,
+                child: const Text("Lap"),
+                onPressed: _lap,
               ),
+            ),
+            Expanded(
+              child: _buildLapDisplay(),
             )
           ],
         ));

@@ -59,11 +59,22 @@ class StopWatchState extends State<StopWatch> {
   }
 
   Widget _buildLapDisplay() {
-    return ListView(
-      children: <Widget>[
-        for (var ms in laps) ListTile(title: Text(_secondsText(ms))),
-      ],
-    );
+    return Scrollbar(
+        child: ListView.builder(
+          controller: ScrollController(),
+          itemExtent: 60.0,
+          itemCount: laps.length,
+          itemBuilder: (context, index) {
+            final ms = laps[index];
+            return ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 50.0),
+              title: Text('Lap $laps{index + 1}'),
+              trailing: Text(_secondsText(ms)),
+
+            )
+          },
+
+    ));
   }
 
   @override
@@ -75,7 +86,7 @@ class StopWatchState extends State<StopWatch> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('${miliseconds / 1000.0} ${_secondsText(miliseconds)}',
+            Text(_secondsText(miliseconds),
                 style: Theme.of(context).textTheme.headline5),
             const SizedBox(height: 20.0),
             Row(

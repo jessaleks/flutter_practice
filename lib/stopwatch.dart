@@ -61,19 +61,17 @@ class StopWatchState extends State<StopWatch> {
   Widget _buildLapDisplay() {
     return Scrollbar(
         child: ListView.builder(
-          controller: ScrollController(),
-          itemExtent: 60.0,
-          itemCount: laps.length,
-          itemBuilder: (context, index) {
-            final ms = laps[index];
-            return ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 50.0),
-              title: Text('Lap $laps{index + 1}'),
-              trailing: Text(_secondsText(ms)),
-
-            )
-          },
-
+      controller: ScrollController(),
+      itemExtent: 60.0,
+      itemCount: laps.length,
+      itemBuilder: (context, index) {
+        final ms = laps[index];
+        return ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 50.0),
+          title: Text('Lap $laps{index + 1}'),
+          trailing: Text(_secondsText(ms)),
+        );
+      },
     ));
   }
 

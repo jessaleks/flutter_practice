@@ -43,7 +43,29 @@ class _LoginScreenState extends State<LoginScreen> {
                       return "Enter the runner's name";
                     }
                     return null;
-                  })
+                  }),
+              TextFormField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(labelText: 'Email'),
+                validator: (text) {
+                  if (text == null || text.isEmpty) {
+                    return 'Enter the runner\'s email.';
+                  }
+
+                  final regex = RegExp('[^@]+@[^.]+..+');
+                  if (!regex.hasMatch(text)) {
+                    return 'Enter a valid email';
+                  }
+
+                  return null;
+                },
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                child: Text('Continue'),
+                onPressed: _validate,
+              ),
             ],
           )),
     );
@@ -51,5 +73,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildSuccess() {
     return Column();
+  }
+
+  void _validate() {
+    final form = _formKey.currentState;
+    if (!form!.validate()) {
+      return;
+    }
+
+    setState(() {
+      loggedIn = true;
+      name = _nameController.text;
+    });
   }
 }

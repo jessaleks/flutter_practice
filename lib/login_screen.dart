@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice/stopwatch.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const route = 'login';
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -79,10 +80,9 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     final name = _nameController.text;
-    final email = _emailController.text;
 
     // pushReplacement so that you can go back
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => StopWatch(name: name, email: email)));
+    Navigator.of(context)
+        .pushReplacementNamed(StopWatch.route, arguments: {name: name});
   }
 }

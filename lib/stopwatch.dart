@@ -1,12 +1,20 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-class StopWatch extends StatefulWidget {
+class StopWatchScreenArguments {
   final String name;
-  final String email;
 
-  const StopWatch({Key? key, required this.name, required this.email})
-      : super(key: key);
+  StopWatchScreenArguments(this.name);
+}
+
+class StopWatch extends StatefulWidget {
+  static const route = '/stopwatch';
+  final String name;
+
+  StopWatch({
+    Key? key,
+    this.name = "",
+  }) : super(key: key);
 
   @override
   State createState() => StopWatchState();
@@ -81,9 +89,12 @@ class StopWatchState extends State<StopWatch> {
 
   @override
   Widget build(BuildContext context) {
+    // this does not work too well
+    final args = ModalRoute.of(context)!.settings.arguments;
+
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.name),
+          title: Text(args!.name),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,

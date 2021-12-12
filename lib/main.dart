@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/login_screen.dart';
+import 'package:flutter_practice/stopwatch.dart';
 // import './stopwatch.dart';
 import 'login_screen.dart';
 
@@ -10,6 +11,13 @@ class StopWatchApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: LoginScreen(key: Key("key")));
+    return MaterialApp(
+      routes: {
+        '/': (context) => const LoginScreen(),
+        LoginScreen.route: (context) => const LoginScreen(),
+        StopWatch.route: (context) => StopWatch(),
+      },
+      initialRoute: '/',
+    );
   }
 }
